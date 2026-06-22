@@ -43,14 +43,18 @@ Write less boilerplate. Ship better Oracle code. Let your AI actually know Oracl
 ```
 oraxia/
 ├── skills/
-│   ├── oracle-sql/          # Core SQL, DDL, DML, TCL, DCL, Analytic Functions
-│   ├── oracle-plsql/        # PL/SQL, Packages, Triggers, Cursors, Collections
-│   ├── oracle-apex/         # Pages, Regions, Dynamic Actions, REST, ORDS
-│   ├── oracle-dba/          # Administration, Storage, Users, Tablespaces, RMAN
-│   ├── oracle-performance/  # Tuning, Indexes, Execution Plans, AWR, Hints
-│   └── oracle-security/     # VPD, RLS, Encryption, Auditing, Wallet
-├── platform-configs/        # Ready-to-copy config files per AI platform
-└── docs/                    # Extended documentation
+│   ├── oracle-sql/           # Core SQL, DDL, DML, TCL, DCL, Analytic Functions
+│   ├── oracle-plsql/         # PL/SQL, Packages, Triggers, Cursors, Collections
+│   ├── oracle-apex/          # Pages, Regions, Dynamic Actions, REST, ORDS
+│   ├── oracle-dba/           # Administration, Storage, Users, Tablespaces, RMAN
+│   ├── oracle-performance/   # Tuning, Indexes, Execution Plans, AWR, Hints
+│   ├── oracle-security/      # VPD, RLS, Encryption, Auditing, Wallet
+│   ├── oracle-23ai/          # 23ai Features: Boolean, IF NOT EXISTS, Domains, Duality Views, PGQ
+│   ├── oracle-vector/        # AI Vector Search: VECTOR type, DBMS_VECTOR, HNSW/IVF, RAG
+│   ├── oracle-ords/          # REST Data Services: AutoREST, Modules, OAuth2, UTL_HTTP
+│   └── oracle-partitioning/  # Partitioning: Range, List, Hash, Interval, Composite, Exchange
+├── platform-configs/         # Ready-to-copy config files per AI platform
+└── docs/                     # Extended documentation
 ```
 
 ---
@@ -161,6 +165,58 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ Unified Auditing
 - ✅ Oracle Wallet
 - ✅ APEX Access Control
+
+### Oracle 23ai New Features ✨
+- ✅ Native `BOOLEAN` SQL column type (no more `NUMBER(1)` workarounds)
+- ✅ `IF [NOT] EXISTS` for CREATE / DROP / ALTER — idempotent migration scripts
+- ✅ SQL Domains — reusable column constraints and display expressions
+- ✅ Table Value Constructors — inline `FROM (VALUES ...)` tables
+- ✅ Direct-join UPDATE and DELETE — no correlated subqueries needed
+- ✅ JSON Relational Duality Views — JSON API over relational tables, full ACID
+- ✅ SQL/PGQ Property Graph Queries — graph queries inside standard SQL
+- ✅ Schema-level privilege grants — grant on all objects in a schema at once
+- ✅ `DB_DEVELOPER_ROLE` — right-sized privilege bundle for app developers
+- ✅ Version compatibility quick reference (23ai vs 21c vs 19c vs 12c)
+
+### Oracle AI Vector Search 🤖
+- ✅ `VECTOR(n, FLOAT32|FLOAT64|INT8|BINARY)` column type
+- ✅ `DBMS_VECTOR.CREATE_CREDENTIAL` — provider setup (OpenAI, OCI GenAI, Cohere)
+- ✅ `DBMS_VECTOR.EMBED_TEXT` — generate embeddings inline in SQL or PL/SQL
+- ✅ Distance metrics: `COSINE`, `DOT`, `EUCLIDEAN`, `EUCLIDEAN_SQUARED`
+- ✅ Shorthand operators: `<=>` (cosine), `<#>` (dot), `<->` (euclidean)
+- ✅ HNSW vector index — in-memory ANN, lowest latency
+- ✅ IVF vector index — disk-based ANN, scales to hundreds of millions of rows
+- ✅ `FETCH APPROXIMATE FIRST n ROWS ONLY WITH TARGET ACCURACY n` syntax
+- ✅ Pre-filter and post-filter patterns for filtered ANN search
+- ✅ Full RAG pipeline with `DBMS_VECTOR_CHAIN` (chunk → embed → retrieve → generate)
+- ✅ Hybrid Search — blend Oracle Text keyword scores with vector similarity scores
+
+### Oracle REST Data Services (ORDS) 🌐
+- ✅ `ORDS.ENABLE_SCHEMA` and `ORDS.ENABLE_OBJECT` — AutoREST in seconds
+- ✅ AutoREST endpoints: GET collection, GET item, POST, PUT, PATCH, DELETE
+- ✅ Custom REST modules with `ORDS.DEFINE_MODULE` / `ORDS.DEFINE_HANDLER`
+- ✅ All source types: `collection_feed`, `collection_item`, `plsql`, `media`, `query`
+- ✅ Automatic pagination envelope (`hasMore`, `limit`, `offset`, `links`)
+- ✅ Bind variables — URI params, query-string params, JSON body fields
+- ✅ Special binds: `:status_code`, `:location`, `:body`, `:body_text`
+- ✅ `ORDS.DEFINE_PARAMETER` for OpenAPI 3.0 spec generation
+- ✅ OAuth 2.0 — Client Credentials flow with `OAUTH.CREATE_CLIENT`
+- ✅ Outbound REST from PL/SQL via `APEX_WEB_SERVICE` and `UTL_HTTP`
+- ✅ Metadata inspection queries (`user_ords_modules`, `user_ords_handlers`, etc.)
+
+### Oracle Partitioning 🗂️
+- ✅ Range partitioning — time-based, with `MAXVALUE` catch-all
+- ✅ Interval partitioning — auto-create monthly, weekly, or daily partitions
+- ✅ List partitioning — discrete values (region, status, country)
+- ✅ Hash partitioning — even distribution across N power-of-2 partitions
+- ✅ Composite partitioning — Range-Hash, Range-List with subpartition templates
+- ✅ Reference partitioning — child tables inherit parent partition structure via FK
+- ✅ Local vs Global indexes — when to use each, alignment rules
+- ✅ Partition management DDL: `ADD`, `DROP`, `TRUNCATE`, `SPLIT`, `MERGE`, `MOVE`
+- ✅ `UPDATE GLOBAL INDEXES` — keeping global indexes valid during partition DDL
+- ✅ Partition Exchange — O(1) bulk load via staging table swap
+- ✅ Partition pruning — how to verify with `DBMS_XPLAN` `PARTITION` format
+- ✅ Partition metadata queries (`user_tab_partitions`, `user_part_indexes`, etc.)
 
 ---
 
