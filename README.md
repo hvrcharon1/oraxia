@@ -1,14 +1,20 @@
-# 🏛️ ORAXIA — Universal Oracle AI Skills Platform
+<p align="center">
+  <img src="LOGO.svg" alt="ORAXIA — Oracle AI Skills Platform" width="560" />
+</p>
 
-> **O**racle · **R**epository for **A**I · **X**-platform · **I**ntelligent **A**ssistance
+<p align="center">
+  <strong>O</strong>racle · <strong>R</strong>epository for <strong>A</strong>I · <strong>X</strong>-platform · <strong>I</strong>ntelligent <strong>A</strong>ssistance
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Oracle DB](https://img.shields.io/badge/Oracle-DB%2019c%2B-C74634?logo=oracle)](https://www.oracle.com/database/)
-[![Oracle APEX](https://img.shields.io/badge/Oracle-APEX%2024%2B-C74634?logo=oracle)](https://apex.oracle.com)
-[![Claude Code](https://img.shields.io/badge/Claude-Code-orange)](https://claude.ai/code)
-[![Cursor](https://img.shields.io/badge/Cursor-AI%20Editor-blue)](https://cursor.sh)
-[![GitHub Copilot](https://img.shields.io/badge/GitHub-Copilot-181717?logo=github)](https://github.com/features/copilot)
-[![OpenCode](https://img.shields.io/badge/OpenCode-AI-green)](https://opencode.ai)
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/></a>
+  <a href="https://www.oracle.com/database/"><img src="https://img.shields.io/badge/Oracle-DB%2019c%2B-C74634?logo=oracle" alt="Oracle DB"/></a>
+  <a href="https://apex.oracle.com"><img src="https://img.shields.io/badge/Oracle-APEX%2024%2B-C74634?logo=oracle" alt="Oracle APEX"/></a>
+  <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/Claude-Code-orange" alt="Claude Code"/></a>
+  <a href="https://cursor.sh"><img src="https://img.shields.io/badge/Cursor-AI%20Editor-blue" alt="Cursor"/></a>
+  <a href="https://github.com/features/copilot"><img src="https://img.shields.io/badge/GitHub-Copilot-181717?logo=github" alt="GitHub Copilot"/></a>
+  <a href="https://opencode.ai"><img src="https://img.shields.io/badge/OpenCode-AI-green" alt="OpenCode"/></a>
+</p>
 
 ---
 
@@ -175,4 +181,4 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ---
 
-*Built with ❤️ for the Oracle developer community · Works on every AI platform*
+<p align="center"><em>Built with ❤️ for the Oracle developer community · Works on every AI platform</em></p>
