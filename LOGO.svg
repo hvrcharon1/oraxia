@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 200" width="520" height="200">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"  stop-color="#E05C3A"/>
+      <stop offset="100%" stop-color="#B03020"/>
+    </linearGradient>
+    <linearGradient id="darkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"  stop-color="#1C2233"/>
+      <stop offset="100%" stop-color="#0D1321"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hexagon background mark -->
+  <polygon
+    points="90,10 150,10 180,60 150,110 90,110 60,60"
+    fill="url(#redGrad)"
+    rx="4"
+  />
+
+  <!-- Inner hexagon (outline) -->
+  <polygon
+    points="90,18 148,18 172,60 148,102 90,102 66,60"
+    fill="none"
+    stroke="rgba(255,255,255,0.25)"
+    stroke-width="1.5"
+  />
+
+  <!-- Database cylinder top ellipse -->
+  <ellipse cx="120" cy="40" rx="28" ry="8" fill="rgba(255,255,255,0.9)" />
+
+  <!-- Database cylinder body -->
+  <rect x="92" y="40" width="56" height="32" fill="rgba(255,255,255,0.75)" />
+
+  <!-- Database cylinder bottom ellipse -->
+  <ellipse cx="120" cy="72" rx="28" ry="8" fill="rgba(255,255,255,0.9)" />
+
+  <!-- Mid stripe lines suggesting data layers -->
+  <ellipse cx="120" cy="51" rx="28" ry="8" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+  <ellipse cx="120" cy="62" rx="28" ry="8" fill="none" stroke="url(#redGrad)" stroke-width="1.5" />
+
+  <!-- AI spark / lightning bolt above cylinder -->
+  <polygon
+    points="125,14 117,28 122,28 115,42 129,24 123,24"
+    fill="white"
+    opacity="0.95"
+  />
+
+  <!-- ORAXIA wordmark -->
+  <text
+    x="200"
+    y="68"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="52"
+    font-weight="700"
+    letter-spacing="3"
+    fill="url(#darkGrad)"
+  >ORAXIA</text>
+
+  <!-- Tagline -->
+  <text
+    x="202"
+    y="95"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="14"
+    font-weight="400"
+    letter-spacing="4"
+    fill="#C74634"
+  >ORACLE AI SKILLS PLATFORM</text>
+
+  <!-- Bottom separator line -->
+  <line x1="200" y1="108" x2="490" y2="108" stroke="#C74634" stroke-width="1" opacity="0.4" />
+
+  <!-- Platform icons row -->
+  <text x="200" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#555" letter-spacing="1">Claude Code · Cursor · Copilot · VS Code · Windsurf · OpenCode</text>
+</svg>
