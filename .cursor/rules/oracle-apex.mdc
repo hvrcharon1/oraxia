@@ -1,0 +1,72 @@
+---
+description: Oracle Database and APEX development rules for Cursor AI
+globs:
+  - '**/*.sql'
+  - '**/*.pls'
+  - '**/*.pks'
+  - '**/*.pkb'
+  - '**/*.trg'
+  - '**/*.prc'
+  - '**/*.fnc'
+  - '**/*.vw'
+alwaysApply: true
+---
+
+# ORAXIA — Oracle AI Skills for Cursor
+
+You are an expert Oracle Database and Oracle APEX developer.
+Apply all rules below when generating or editing Oracle SQL and PL/SQL code.
+
+## Oracle SQL Syntax
+
+- `VARCHAR2` for strings (not VARCHAR)
+- `NUMBER(p,s)` for numerics
+- Date literals: `DATE '2024-01-15'` (never TO_DATE with string)
+- `SYSDATE` / `SYSTIMESTAMP` for current date/timestamp
+- `NVL`, `NVL2`, `COALESCE`, `NULLIF` for NULL handling
+- Limit rows: `FETCH FIRST n ROWS ONLY` (12c+) or `WHERE ROWNUM <= n`
+- Hierarchical: `CONNECT BY PRIOR ... START WITH ...`
+- Pivot: `PIVOT (agg FOR col IN (...))` / `UNPIVOT`
+- Use CTEs for readability: `WITH cte_name AS (...) SELECT ...`
+- `MERGE INTO` for upsert operations
+
+## PL/SQL Style
+
+- Structure: `DECLARE ... BEGIN ... EXCEPTION WHEN ... THEN ... END;`
+- Parameter prefixes: `p_` (IN), `p_out_` (OUT), `p_io_` (IN OUT)
+- Variable prefixes: `v_` (local), `c_` (constant), `t_` (type)
+- Always handle: `NO_DATA_FOUND`, `TOO_MANY_ROWS`, `DUP_VAL_ON_INDEX`, `OTHERS`
+- Prefer packages: spec (`.pks`) + body (`.pkb`) over standalone procedures
+- Use `%TYPE` and `%ROWTYPE` for variable declarations
+- Bulk processing: `BULK COLLECT INTO ... LIMIT 1000` + `FORALL`
+- Pipelined functions: `RETURN t_table_type PIPELINED` + `PIPE ROW(rec)`
+- DBMS packages: `DBMS_SCHEDULER`, `DBMS_STATS`, `DBMS_LOCK`, `UTL_FILE`, `UTL_HTTP`
+
+## Oracle APEX Patterns
+
+- Page items: `P{n}_{NAME}` — bind as `:P{n}_{NAME}` in SQL/PL/SQL
+- Dynamic Actions: JavaScript uses `apex.item()`, `apex.region()` APIs
+- DA PL/SQL: always list 'Items to Submit' and 'Items to Return'
+- APEX APIs:
+  - `APEX_JSON.OPEN_OBJECT / WRITE / CLOSE_OBJECT` for JSON responses
+  - `APEX_MAIL.SEND / PUSH_QUEUE` for email
+  - `APEX_WEB_SERVICE.MAKE_REST_REQUEST` for outbound REST
+  - `APEX_UTIL.SET_SESSION_STATE` to set item values
+  - `APEX_ERROR.ADD_ERROR` for validation errors
+  - `APEX_ESCAPE.HTML / JS_LITERAL` for output escaping
+- ORDS: `ORDS.DEFINE_MODULE` + `ORDS.DEFINE_HANDLER` for REST endpoints
+
+## Security
+
+- NEVER use string concatenation in dynamic SQL with user input
+- Always use `EXECUTE IMMEDIATE '...' USING :bind_var`
+- VPD: `DBMS_RLS.ADD_POLICY` for row-level security
+- TDE: `ALTER TABLE ... MODIFY (col ENCRYPT USING 'AES256')`
+- Audit: `CREATE AUDIT POLICY ... ACTIONS ... ON ...`
+
+## Code Format
+
+- SQL keywords UPPERCASE; identifiers lowercase with underscores
+- Indent with 4 spaces
+- Align AS aliases in SELECT clause for readability
+- Add meaningful comments on complex logic

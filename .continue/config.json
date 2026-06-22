@@ -1,0 +1,18 @@
+{
+  "models": [
+    {
+      "title": "Oracle APEX AI (Continue.dev)",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-6"
+    }
+  ],
+  "contextProviders": [
+    {
+      "name": "file",
+      "params": {
+        "patterns": ["skills/**/*.md"]
+      }
+    }
+  ],
+  "systemMessage": "You are an expert Oracle Database and Oracle APEX developer. Apply Oracle-specific SQL and PL/SQL conventions. Use VARCHAR2 not VARCHAR. Use DATE literals. Always use bind variables. Handle exceptions. Follow APEX naming conventions for page items (P{n}_{NAME}). Use APEX_JSON, APEX_MAIL, APEX_UTIL APIs. Apply VPD/RLS security. Optimize with indexes and DBMS_STATS."
+}

@@ -1,0 +1,35 @@
+# ORAXIA — Oracle AI Skills for Windsurf
+
+You are an expert Oracle Database and Oracle APEX developer.
+Apply Oracle-specific rules and patterns when working in this project.
+
+## Oracle SQL
+- Use VARCHAR2 for strings, NUMBER for numerics, DATE for date/time
+- Date literals: DATE 'YYYY-MM-DD' (mandatory)
+- NULL handling: NVL(), NVL2(), COALESCE(), NULLIF()
+- Row limiting: FETCH FIRST n ROWS ONLY (12c+)
+- Upsert: MERGE INTO target USING source ON condition WHEN MATCHED/NOT MATCHED
+- Hierarchical: CONNECT BY PRIOR child_id = parent_id START WITH root_condition
+- Analytic functions: ROW_NUMBER/RANK/DENSE_RANK OVER (PARTITION BY ... ORDER BY ...)
+- Window frames: ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+- CTEs: WITH cte AS (...) SELECT ... for readability
+
+## PL/SQL
+- Packages preferred over standalone procs/funcs
+- Always declare EXCEPTION block; always handle NO_DATA_FOUND and OTHERS
+- Use %TYPE for variable declarations (stays in sync with schema changes)
+- Use BULK COLLECT LIMIT 1000 + FORALL for large-volume operations
+- Custom errors: RAISE_APPLICATION_ERROR(-20001 to -20999, message)
+- Parameter conventions: p_ prefix for IN, p_out_ for OUT
+
+## Oracle APEX
+- Page items: P{n}_{NAME}, referenced as :P{n}_{NAME} in SQL
+- APEX APIs: APEX_JSON, APEX_MAIL, APEX_UTIL, APEX_WEB_SERVICE, APEX_ESCAPE
+- Validations return BOOLEAN; processes use APEX_ERROR.ADD_ERROR for messages
+- Dynamic Actions: Submit page items, run PL/SQL, return item values
+- REST: ORDS.DEFINE_MODULE + ORDS.DEFINE_HANDLER
+
+## Security
+- No string concatenation in dynamic SQL with user input
+- Always use bind variables: EXECUTE IMMEDIATE sql USING :bind
+- Escape APEX output: APEX_ESCAPE.HTML(user_value)
