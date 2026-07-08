@@ -9,6 +9,7 @@ Quick reference for all available Oracle AI skills in this repository.
 | Oracle APEX | `skills/oracle-apex/SKILL.md` | Pages, IR/IG, Dynamic Actions, APEX APIs, ORDS, AI Integration |
 | Oracle DBA | `skills/oracle-dba/SKILL.md` | Users, Tablespaces, RMAN, Data Pump, CDB/PDB |
 | Oracle Performance | `skills/oracle-performance/SKILL.md` | Explain Plan, Indexes, Hints, AWR/ASH, Partitioning |
+| Oracle Locking & Concurrency | `skills/oracle-concurrency/SKILL.md` | Savepoints, ITL/Uba, Transaction Wait Queues, Blocking Diagnosis, 23ai Assertions |
 | Oracle Security | `skills/oracle-security/SKILL.md` | VPD, TDE, Auditing, Wallet, Secure PL/SQL |
 
 ---

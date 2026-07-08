@@ -48,6 +48,7 @@ oraxia/
 │   ├── oracle-apex/          # Pages, Regions, Dynamic Actions, REST, ORDS
 │   ├── oracle-dba/           # Administration, Storage, Users, Tablespaces, RMAN
 │   ├── oracle-performance/   # Tuning, Indexes, Execution Plans, AWR, Hints
+│   ├── oracle-concurrency/   # Locking, Savepoints, Transactions, Enqueues, MVCC
 │   ├── oracle-security/      # VPD, RLS, Encryption, Auditing, Wallet
 │   ├── oracle-23ai/          # 23ai Features: Boolean, IF NOT EXISTS, Domains, Duality Views, PGQ
 │   ├── oracle-vector/        # AI Vector Search: VECTOR type, DBMS_VECTOR, HNSW/IVF, RAG
@@ -157,6 +158,16 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ AWR / ASH reports interpretation
 - ✅ Optimizer statistics (DBMS_STATS)
 - ✅ Partitioning strategies
+
+### Oracle Locking & Concurrency 🔒
+- ✅ SAVEPOINT / ROLLBACK TO SAVEPOINT semantics (partial-transaction undo)
+- ✅ Interested Transaction List (ITL) / Uba row-locking internals
+- ✅ Transaction-level wait queues vs. row-level visibility re-evaluation
+- ✅ Diagnosing blocking chains (`v$lock`, `v$session`, `x$ktcsp`)
+- ✅ Modern (23ai) multi-line `ORA-00001` / `ORA-03301` duplicate-key diagnostics
+- ✅ 23ai `CREATE ASSERTION` and AN-enqueue behavior
+- ✅ Deadlock-safe retry patterns for unique-constraint contention
+- ✅ Anti-patterns: FIFO wait-order assumptions, savepoint-as-lock-release assumptions
 
 ### Security
 - ✅ Virtual Private Database (VPD / RLS)
