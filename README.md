@@ -48,6 +48,7 @@ oraxia/
 │   ├── oracle-apex/          # Pages, Regions, Dynamic Actions, REST, ORDS
 │   ├── oracle-dba/           # Administration, Storage, Users, Tablespaces, RMAN
 │   ├── oracle-performance/   # Tuning, Indexes, Execution Plans, AWR, Hints
+│   ├── oracle-connection-pooling/ # Pool sizing, exhaustion diagnosis, HikariCP/UCP, hidden dependencies
 │   ├── oracle-concurrency/   # Locking, Savepoints, Transactions, Enqueues, MVCC
 │   ├── oracle-security/      # VPD, RLS, Encryption, Auditing, Wallet
 │   ├── oracle-23ai/          # 23ai Features: Boolean, IF NOT EXISTS, Domains, Duality Views, PGQ
@@ -158,6 +159,17 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ AWR / ASH reports interpretation
 - ✅ Optimizer statistics (DBMS_STATS)
 - ✅ Partitioning strategies
+
+### Oracle Connection Pooling 🔌
+- ✅ Reading pool accounting numbers (total / active / idle / waiting) before touching config
+- ✅ Why oversized pools reduce throughput — CPU/I-O contention, context-switching, cache thrash
+- ✅ HikariCP/UCP core-and-I/O sizing heuristic as a starting point, confirmed via load testing
+- ✅ Diagnosing the "hidden dependency" pattern — a synchronous external call holding a pooled connection
+- ✅ Correlating timeout durations across logs to unmask a masked downstream dependency
+- ✅ Oracle session/SQL-view diagnosis of what a held connection is actually doing
+- ✅ Layered remediation: sizing, fast-fail timeouts, leak detection, circuit breakers, decoupling connection from network call
+- ✅ Idle-connection validation / health-check queries
+- ✅ Anti-patterns: reflexive pool enlargement, connections held across network calls, untimed outbound calls
 
 ### Oracle Locking & Concurrency 🔒
 - ✅ SAVEPOINT / ROLLBACK TO SAVEPOINT semantics (partial-transaction undo)
