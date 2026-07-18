@@ -50,6 +50,7 @@ oraxia/
 │   ├── oracle-performance/   # Tuning, Indexes, Execution Plans, AWR, Hints
 │   ├── oracle-connection-pooling/ # Pool sizing, exhaustion diagnosis, HikariCP/UCP, hidden dependencies
 │   ├── oracle-concurrency/   # Locking, Savepoints, Transactions, Enqueues, MVCC
+│   ├── oracle-data-quality/  # Invisible characters, DUMP() diagnostics, exact-match failures
 │   ├── oracle-security/      # VPD, RLS, Encryption, Auditing, Wallet
 │   ├── oracle-23ai/          # 23ai Features: Boolean, IF NOT EXISTS, Domains, Duality Views, PGQ
 │   ├── oracle-vector/        # AI Vector Search: VECTOR type, DBMS_VECTOR, HNSW/IVF, RAG
@@ -180,6 +181,15 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ 23ai `CREATE ASSERTION` and AN-enqueue behavior
 - ✅ Deadlock-safe retry patterns for unique-constraint contention
 - ✅ Anti-patterns: FIFO wait-order assumptions, savepoint-as-lock-release assumptions
+
+### Oracle Data Quality 🔍
+- ✅ `DUMP()` — inspecting the raw byte representation behind any column value
+- ✅ Diagnosing exact-match failures where rendered text looks identical but the underlying bytes differ
+- ✅ Detecting hidden `CHR(13)`/`CHR(10)` (CR/LF) contamination from Excel/Word paste, Windows-style CSV loads, and unsanitized migrations
+- ✅ APEX Popup LOV vs. Select List — why one silently blanks and the other renders fine from the same query
+- ✅ Permanent cleanup via `TRIM(REPLACE(REPLACE(...)))` instead of a defensive `TRIM()` scattered across every query
+- ✅ Recognizing the same failure mode in `WHERE`-clause equality, `UNIQUE` constraints, and joins
+- ✅ Anti-patterns: masking with `TRIM()` instead of fixing the data, assuming query tools reveal byte-level contamination
 
 ### Security
 - ✅ Virtual Private Database (VPD / RLS)
