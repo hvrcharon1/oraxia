@@ -144,6 +144,7 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ APEX AI / Generative AI integration (APEX 24.1+)
 - ✅ Progressive Web App (PWA) configuration
 - ✅ Declarative Row Selection — checkboxes, Current Selection Page Item, JS selection API (APEX 26.1+)
+- ✅ Auto-selecting IR rows by condition on page load via the `u-selector`/`is-selected` Row Selector markup (APEX 26.1+)
 
 ### Oracle DBA & Administration
 - ✅ Tablespace & Datafile management

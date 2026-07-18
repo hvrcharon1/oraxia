@@ -101,6 +101,48 @@ BEGIN
 END;
 ```
 
+### Auto-Selecting Rows by Condition (JS extension)
+
+> Credit: Shibika Saikia, ["Using Row Selector Functionality in Oracle APEX 26.1 Interactive Reports to Automatically Select Rows Based on Conditions"](https://www.linkedin.com/pulse/using-row-selector-functionality-oracle-apex-261-reports-saikia-7um2f), LinkedIn, Jul 16, 2026.
+
+- The declarative Row Selector renders each checkbox with class `u-selector`; a selected row gets `is-selected` on both the `<tr>` and the checkbox — these are rendered classes, not documented public API, so re-verify with browser dev tools after any APEX upgrade
+- Use this when rows need to be preselected on page load based on a business rule, instead of waiting for the user to click — e.g. open an approval page with all "Pending" records already checked
+- Wire it up as a Dynamic Action: **Event** = Page Load, **True Action** = Execute JavaScript Code
+- Trigger the checkbox's `click` event rather than setting `.prop("checked", true)` directly — the click is what makes APEX update its internal selection model and the bound Current Selection Page Item, not just the visual checkbox
+- If the IR hasn't finished rendering by the time the Dynamic Action fires, wrap the loop in a short `setTimeout` (e.g. 500ms) instead
+
+```javascript
+// DA: Event = Page Load, True Action = Execute JavaScript Code
+// Auto-select every row whose content matches a condition (e.g. Status = "Pending")
+$(".u-selector").each(function () {
+    var rowText = $(this).closest("tr").text();
+    if (rowText.includes("Pending") && !$(this).hasClass("is-selected")) {
+        $(this).trigger("click");
+    }
+});
+
+// Same pattern driven by a page item instead of a hardcoded value
+var status = $v("P1_STATUS");
+$(".u-selector").each(function () {
+    var rowText = $(this).closest("tr").text();
+    if (rowText.includes(status) && !$(this).hasClass("is-selected")) {
+        $(this).trigger("click");
+    }
+});
+
+// If the IR may not have rendered yet when the DA fires, delay the pass:
+setTimeout(function () {
+    $(".u-selector").each(function () {
+        var rowText = $(this).closest("tr").text();
+        if (rowText.includes("Pending") && !$(this).hasClass("is-selected")) {
+            $(this).trigger("click");
+        }
+    });
+}, 500);
+```
+
+Good fits: approval pages opened with pending items pre-checked, preselecting records ready for processing, or any bulk-action workflow where rows meeting a rule shouldn't require a manual click first.
+
 ---
 
 ## Interactive Grid (IG) Tips
