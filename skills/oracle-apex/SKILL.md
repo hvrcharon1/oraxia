@@ -70,6 +70,37 @@ apex.region("my-ir-static-id").widget().interactiveReport("addFilter", {
 });
 ```
 
+### Declarative Row Selection (APEX 26.1+)
+
+- Native checkbox row selection for IR, fully configured in Page Designer — no custom DA/JS needed for the basic case
+- Right-click **Columns** under the IR region → **Create Row Selector** to add the Row Selector column
+- Three attributes live on that column:
+  - **Enable Multi Select** — turns on checkboxes; must be `Yes` before anything else activates
+  - **Show Select All** — header checkbox to select/deselect all visible rows (requires Enable Multi Select = `Yes`)
+  - **Hide Control** — keeps selection active but hides the checkboxes, for JS-API-driven selection instead of a visible control
+- **Current Selection Page Item** (e.g. `P1_SELECTED_IDS`) — APEX auto-populates this with a colon-delimited list of selected primary key values; reference it from PL/SQL processes and Dynamic Actions like any other item
+- Add a Trigger Action on the **Selection Change [Region]** event to react as the user (de)selects rows — refresh a region, enable/disable a button, kick off a process
+- Prefer this over the old `APEX$ROW_SELECTOR` / manual-checkbox-column workaround for bulk approvals, batch updates, and multi-row exports
+
+```javascript
+// Region-level selection methods (especially useful when Hide Control = Yes)
+apex.region("my-ir-static-id").call("getSelectedValues");                  // read current selection
+apex.region("my-ir-static-id").call("setSelectedValues", ["101", "102"]);  // select specific rows by PK
+apex.region("my-ir-static-id").call("selectAll");                          // select every visible row
+```
+
+```sql
+-- PL/SQL process reading the bound Current Selection Page Item
+-- P1_SELECTED_IDS arrives as colon-delimited PK values, e.g. "101:102:105"
+DECLARE
+    v_ids apex_t_varchar2 := apex_string.split(:P1_SELECTED_IDS, ':');
+BEGIN
+    FORALL i IN 1 .. v_ids.COUNT
+        UPDATE orders SET status = 'APPROVED' WHERE order_id = v_ids(i);
+    COMMIT;
+END;
+```
+
 ---
 
 ## Interactive Grid (IG) Tips

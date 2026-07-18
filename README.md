@@ -143,6 +143,7 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ Authorization & Authentication schemes
 - ✅ APEX AI / Generative AI integration (APEX 24.1+)
 - ✅ Progressive Web App (PWA) configuration
+- ✅ Declarative Row Selection — checkboxes, Current Selection Page Item, JS selection API (APEX 26.1+)
 
 ### Oracle DBA & Administration
 - ✅ Tablespace & Datafile management
