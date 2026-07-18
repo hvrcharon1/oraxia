@@ -55,7 +55,8 @@ oraxia/
 │   ├── oracle-23ai/          # 23ai Features: Boolean, IF NOT EXISTS, Domains, Duality Views, PGQ
 │   ├── oracle-vector/        # AI Vector Search: VECTOR type, DBMS_VECTOR, HNSW/IVF, RAG
 │   ├── oracle-ords/          # REST Data Services: AutoREST, Modules, OAuth2, UTL_HTTP
-│   └── oracle-partitioning/  # Partitioning: Range, List, Hash, Interval, Composite, Exchange
+│   ├── oracle-partitioning/  # Partitioning: Range, List, Hash, Interval, Composite, Exchange
+│   └── oracle-realtime-tracking/ # Real-time GPS/location tracking: Supabase Realtime, Leaflet, OSRM routing
 ├── platform-configs/         # Ready-to-copy config files per AI platform
 └── docs/                     # Extended documentation
 ```
@@ -252,6 +253,14 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ Partition Exchange — O(1) bulk load via staging table swap
 - ✅ Partition pruning — how to verify with `DBMS_XPLAN` `PARTITION` format
 - ✅ Partition metadata queries (`user_tab_partitions`, `user_part_indexes`, etc.)
+
+### Oracle APEX Real-Time Tracking 📍
+- ✅ Two-database realtime architecture — Oracle as system of record, Supabase Realtime as the WebSocket push layer, Leaflet.js as the map renderer
+- ✅ ID-keyed marker registry pattern — preventing duplicate/ghost markers on every position update
+- ✅ Supabase `postgres_changes` Realtime subscriptions and Row Level Security gotchas for anonymous writes
+- ✅ Browser GPS capture via `navigator.geolocation.watchPosition` upserted into a live-position table
+- ✅ APEX native PWA support (21.2+) and `navigator.wakeLock` for tracker pages, with honest background-tracking limitations
+- ✅ Free OSRM road-network routing (no API key) and the OSRM ↔ Leaflet coordinate-order gotcha
 
 ---
 
