@@ -56,7 +56,8 @@ oraxia/
 │   ├── oracle-vector/        # AI Vector Search: VECTOR type, DBMS_VECTOR, HNSW/IVF, RAG
 │   ├── oracle-ords/          # REST Data Services: AutoREST, Modules, OAuth2, UTL_HTTP
 │   ├── oracle-partitioning/  # Partitioning: Range, List, Hash, Interval, Composite, Exchange
-│   └── oracle-realtime-tracking/ # Real-time GPS/location tracking: Supabase Realtime, Leaflet, OSRM routing
+│   ├── oracle-realtime-tracking/ # Real-time GPS/location tracking: Supabase Realtime, Leaflet, OSRM routing
+│   └── oracle-root-cause-diagnosis/ # Design vs. database root-cause diagnosis before reaching for an index
 ├── platform-configs/         # Ready-to-copy config files per AI platform
 └── docs/                     # Extended documentation
 ```
@@ -261,6 +262,15 @@ cp .oraxia/.windsurfrules .windsurfrules
 - ✅ Browser GPS capture via `navigator.geolocation.watchPosition` upserted into a live-position table
 - ✅ APEX native PWA support (21.2+) and `navigator.wakeLock` for tracker pages, with honest background-tracking limitations
 - ✅ Free OSRM road-network routing (no API key) and the OSRM ↔ Leaflet coordinate-order gotcha
+
+### Oracle Root-Cause Diagnosis 🧭
+- ✅ The model: Total Cost = Cost Per Execution × Number of Executions — separating a database problem from a design problem
+- ✅ Reading `v$sql` execution counts to catch logic invoked once-per-row instead of once-per-batch
+- ✅ `DBMS_HPROF` hierarchical profiler for exact PL/SQL call counts when logic doesn't issue its own SQL
+- ✅ Collapsing loop-invariant calls and row-by-row (RBAR) logic into cached lookups or set-based SQL
+- ✅ The "ask before you tune" checkpoint — is this a database problem or a design problem?
+- ✅ Verifying a fix by re-measuring execution count, not just wall-clock time
+- ✅ Anti-patterns: reaching for an index first, declaring success from wall-clock time alone, profiling only at the SQL level
 
 ---
 
