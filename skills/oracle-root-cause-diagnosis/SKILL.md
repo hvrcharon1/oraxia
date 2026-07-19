@@ -149,3 +149,7 @@ An index makes one expensive thing cheaper. It cannot make one cheap thing stop 
 
 - `oracle-performance/` — execution plans, indexing, hints, AWR/ASH, and optimizer statistics for when the evidence points to a genuine database problem.
 - `oracle-plsql/` — BULK COLLECT / FORALL and other set-based rewrites for collapsing row-by-row PL/SQL into set-based operations.
+
+## Credit
+
+- The "design problem vs. database problem" framing and diagnostic lesson behind this skill is credited to a public LinkedIn post.
